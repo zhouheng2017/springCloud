@@ -6,7 +6,12 @@
 	<groupId>com.imooc</groupId>
 	<artifactId>product</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>procut-client</module>
+		<module>product-common</module>
+		<module>product-server</module>
+	</modules>
+	<packaging>pom</packaging>
 
 	<name>product</name>
 	<description>Demo project for Spring Boot</description>

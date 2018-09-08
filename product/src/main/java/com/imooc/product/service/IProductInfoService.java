@@ -1,6 +1,7 @@
 package com.imooc.product.service;
 
 import com.imooc.product.dataobject.ProductInfo;
+import com.imooc.product.dto.CartDTO;
 
 import java.util.List;
 
@@ -19,4 +20,9 @@ public interface IProductInfoService {
      * @return
      */
     List<ProductInfo> findUpAll();
+
+    List<ProductInfo> findByProductIdList(List<String> productIdList);
+
+    void decreaseStock(List<CartDTO> cartDTOList);
+
 }

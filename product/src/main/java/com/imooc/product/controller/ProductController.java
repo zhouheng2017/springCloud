@@ -6,6 +6,7 @@ import com.imooc.product.VO.ProductVO;
 import com.imooc.product.VO.ResultVO;
 import com.imooc.product.dataobject.ProductCategory;
 import com.imooc.product.dataobject.ProductInfo;
+import com.imooc.product.dto.CartDTO;
 import com.imooc.product.service.IProductInfoService;
 import com.imooc.product.service.ProductCategoryService;
 import com.imooc.product.util.ResultVOUtil;
@@ -13,8 +14,7 @@ import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/product")
-public class ProductInfoController {
+public class ProductController {
 
     @Autowired
     private IProductInfoService productInfoService;
@@ -37,7 +37,7 @@ public class ProductInfoController {
     private ProductCategoryService productCategoryService;
 
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public ResultVO list(Integer productStatus) {
 
         List<ProductInfo> productInfoList = productInfoService.findUpAll();
@@ -75,4 +75,24 @@ public class ProductInfoController {
     }
 
 
+    /**
+     * 获取商品的列表
+     *
+     * @param productIdList
+     * @return
+     */
+    @PostMapping("/listProduct")
+    public List<ProductInfo> listProduct(@RequestBody List<String> productIdList) {
+
+        List<ProductInfo> productInfoList = productInfoService.findByProductIdList(productIdList);
+        return productInfoList;
+
+    }
+
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList) {
+
+        productInfoService.decreaseStock(cartDTOList);
+
+    }
 }
