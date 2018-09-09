@@ -1,16 +1,19 @@
 package com.imooc.order.client;
 
 //import org.springframework.cloud.netflix.fegin.FeignClient;
+
 import com.imooc.product.dataobject.DecreaseStockInput;
 import com.imooc.product.dataobject.ProductInfoOutput;
-//import org.springframework.cloud.openfeign.FeignClient;
-//import org.springframework.stereotype.Component;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+
+//import org.springframework.cloud.openfeign.FeignClient;
+//import org.springframework.stereotype.Component;
 
 /**
  * @Author: zhouheng
@@ -20,7 +23,7 @@ import java.util.List;
  * @Time: 21:16
  */
 //访问product服
-//@Component
+@Component
 @FeignClient(name = "product")
 public interface ProductClient {
 
